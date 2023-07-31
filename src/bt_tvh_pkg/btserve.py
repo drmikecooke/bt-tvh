@@ -10,12 +10,15 @@ restart=["sudo","shutdown","-r","now"]
 
 def connection():
 	print("Connection")
-	s.send(ip4())
+	s.send(ip4(h))
 	if not "TVH" in environ:
 		s.send("user?\n")
 	else:
 		s.send("How can I help?\n")
 
+def disconnection():
+	print("Disconnection")
+	
 def data_received(data):
 	if not "TVH" in environ:
 		environ["TVH"]=data
@@ -24,8 +27,9 @@ def data_received(data):
 	if not ":" in environ["TVH"]:
 		environ["TVH"]+=":"+data
 		environ["TVH"]=environ["TVH"].replace("\r\n","")
-		setUSR()
-		s.send(state()+"How can I help?\n")
+		setUSR(h)
+		stt=state()
+		s.send(stt+"How can I help?\n")
 		return
 	if "stop" in data:
 		s.send("Stopping . . .\n")
@@ -36,11 +40,20 @@ def data_received(data):
 	elif "state" in data:
 		s.send("State report:\n"+state())
 		print("Sending state")
+	elif "reset" in data:
+		s.send("Resetting user details\nuser?\n")
+		print("Resetting user details")
+		del environ["TVH"]
 	else:
 		s.send("Not sure what you want:\n")
 		s.send(data)
 
-def server():
-	global s
-	s = BluetoothServer(data_received,when_client_connects=connection)
+def server(host):
+	global s,h
+	h=host
+	s = BluetoothServer(
+		data_received,
+		when_client_connects=connection,
+		when_client_disconnects=disconnection
+	)
 	pause()

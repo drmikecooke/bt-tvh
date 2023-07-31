@@ -29,7 +29,10 @@ long_line_column=72
 
 [files]
 current_page=0
-FILE_NAME_0=0;Python;0;EUTF-8;1;1;0;%2Fhome%2Fmike%2Fgitprojects%2Fbt-tvh%2Ftests%2Flaunch.py;0;4
+FILE_NAME_0=127;Python;0;EUTF-8;1;1;0;%2Fhome%2Fmike%2Fgitprojects%2Fbt-tvh%2Ftests%2Flaunch.py;0;4
+FILE_NAME_1=663;Python;0;EUTF-8;1;1;0;%2Fhome%2Fmike%2Fgitprojects%2Fbt-tvh%2Fsrc%2Fbt_tvh_pkg%2Fbtserve.py;0;4
+FILE_NAME_2=401;Python;0;EUTF-8;0;1;0;%2Fhome%2Fmike%2Fgitprojects%2Fbt-tvh%2Fsrc%2Fbt_tvh_pkg%2Fapi.py;0;4
+FILE_NAME_3=243;Python;0;EUTF-8;0;1;0;%2Fhome%2Fmike%2Fgitprojects%2Fbt-tvh%2Fsrc%2Fbt_tvh_pkg%2Ftvh.py;0;4
 
 [VTE]
 last_dir=/home/mike

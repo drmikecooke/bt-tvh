@@ -13,15 +13,15 @@ from os import environ
 statkeys=["input","ber","ec_bit","ec_block","tc_bit","tc_block","te","cc","unc"]
 
 def getAPI(api):
-    bUrl='http://rpiz3.local:9981/api/'
     try:
-        response=requests.get(bUrl+api,auth=HTTPDigestAuth(__USER__,__PWD__))
+        response=requests.get(__URL__+api,auth=HTTPDigestAuth(__USER__,__PWD__))
     except requests.ConnectionError:
         return {'help':0} # indicate not connected
     return loads(response.text,strict=False)
 
-def setUSR():
-    global __USER__,__PWD__
+def setUSR(host):
+    global __USER__,__PWD__,__URL__
+    __URL__=f'http://{host}:9981/api/'
     if "TVH" in environ:
         __USER__,__PWD__=environ["TVH"].split(":")
     else:
