@@ -4,9 +4,10 @@ from subprocess import run
 from .tvh import ip4,state
 from .api import setUSR,subs,inputs,nxt
 from os import environ
+import sys
 
-stop=["sudo","shutdown","now"]
-restart=["sudo","shutdown","-r","now"]
+stop=["sudo","shutdown"]
+restart=["sudo","shutdown","-r"]
 
 def connection():
 	print("Connection")
@@ -33,7 +34,10 @@ def data_received(data):
 		return
 	if "stop" in data:
 		s.send("Stopping . . .\n")
+		s.stop()
 		run(stop)
+		sys.exit()
+		return
 	elif "restart" in data:
 		s.send("Restarting . . .\n")
 		run(restart)
