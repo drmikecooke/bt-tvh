@@ -14,6 +14,8 @@ def connection():
 	if not "TVH" in environ:
 		s.send("user?\n")
 	else:
+		setUSR(h)
+		stt=state()
 		s.send("How can I help?\n")
 
 def disconnection():
