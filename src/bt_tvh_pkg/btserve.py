@@ -49,9 +49,9 @@ def data_received(data):
 		s.send("Not sure what you want:\n")
 		s.send(data)
 
-def server(host):
+def server():
 	global s,h
-	h=host
+	h="localhost"
 	s = BluetoothServer(
 		data_received,
 		when_client_connects=connection,
