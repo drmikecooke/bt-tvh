@@ -16,7 +16,7 @@ def connection():
 	else:
 		setUSR(h)
 		stt=state()
-		s.send("How can I help?\n")
+		s.send(stt+"How can I help?\n")
 
 def disconnection():
 	print("Disconnection")
