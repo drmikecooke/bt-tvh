@@ -1,10 +1,9 @@
 from bluedot.btcomm import BluetoothServer
-from signal import pause
+from signal import pause,SIGKILL
 from subprocess import run
 from .tvh import ip4,state
 from .api import setUSR,subs,inputs,nxt
-from os import environ
-import sys
+from os import environ,kill,getpid
 
 stop=["sudo","shutdown"]
 restart=["sudo","shutdown","-r"]
@@ -19,7 +18,7 @@ def connection():
 
 def disconnection():
 	print("Disconnection")
-	
+
 def data_received(data):
 	if not "TVH" in environ:
 		environ["TVH"]=data
@@ -34,10 +33,8 @@ def data_received(data):
 		return
 	if "stop" in data:
 		s.send("Stopping . . .\n")
-		s.stop()
 		run(stop)
-		sys.exit()
-		return
+		kill(getpid(),SIGKILL)
 	elif "restart" in data:
 		s.send("Restarting . . .\n")
 		run(restart)
