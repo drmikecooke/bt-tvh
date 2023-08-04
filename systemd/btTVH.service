@@ -1,0 +1,11 @@
+[Unit]
+Description=Bluetooth TVH Service
+
+[Service]
+# Command to execute when the service is started
+ExecStart=/home/mike/.local/bin/btTVH
+Environment=PYTHONUNBUFFERED=1
+Environment="TVH=user:pwd"
+
+[Install]
+WantedBy=default.target
