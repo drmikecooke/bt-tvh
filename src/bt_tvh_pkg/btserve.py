@@ -54,6 +54,7 @@ def data_received(data):
 def server():
 	global s,h
 	h="localhost"
+	print("Server starting . . .")
 	s = BluetoothServer(
 		data_received,
 		when_client_connects=connection,
